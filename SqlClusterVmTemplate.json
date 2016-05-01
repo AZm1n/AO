@@ -352,7 +352,7 @@
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": "[parameters('sqlDiskSize')]",
-              "lun": 1
+              "lun": 2
             },
             {
               "vhd": {
@@ -362,7 +362,7 @@
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": "[parameters('sqlDiskSize')]",
-              "lun": 1
+              "lun": 3
             }
           ]
 				},
