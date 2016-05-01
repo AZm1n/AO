@@ -104,7 +104,8 @@
       ],
       "metadata": {
         "description": "The region to deploy the resources into"
-      }
+      },
+      "defaultValue": "Central US"
     },
 
     "vmSize": {

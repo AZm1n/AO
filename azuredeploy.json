@@ -177,7 +177,7 @@
       "metadata": {
         "description": "Location of resources upon which this template is dependent, such as nested templates and DSC modules"
       },
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/sql-server-2014-alwayson-dsc"
+      "defaultValue": "https://raw.githubusercontent.com/AZm1n/AO/master/"
     }
 
   },
@@ -218,14 +218,14 @@
     "publicLBName": "sqlLoadBalancer",
     "lbFE": "SqlLBFE",
     "lbBE": "SqlLBBE",
-    "sqllbID":"[resourceId('Microsoft.Network/loadBalancers',variables('publicLBName'))]",
+    "sqllbID": "[resourceId('Microsoft.Network/loadBalancers',variables('publicLBName'))]",
     "sqllbFEConfigID": "[concat(variables('sqllbID'),'/frontendIPConfigurations/',variables('lbFE'))]",
     "sqlBEAddressPoolID": "[concat(variables('sqllbID'),'/backendAddressPools/',variables('lbBE'))]",
 
     "deploySqlWitnessShare": "deploySqlWitnessShare",
     "deploySqlWitnessShareId": "[concat('Microsoft.Resources/deployments/', variables('deploySqlWitnessShare'))]",
     "deploySqlWitnessShareTemplateUrl": "[concat(parameters('assetLocation'),'/DeploySqlWitnessShare.json')]",
-    "sqlWitnessSharePath" : "[concat(parameters('vmNamePrefix'),'-fsw')]",
+    "sqlWitnessSharePath": "[concat(parameters('vmNamePrefix'),'-fsw')]",
     "sqlWitnessVmNamePrefix": "[concat(parameters('vmNamePrefix'),'-SqlW-')]",
     "sqlwVMName": "[concat(variables('sqlWitnessVmNamePrefix'),'0')]",
 
