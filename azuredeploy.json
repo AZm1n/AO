@@ -177,7 +177,7 @@
       "metadata": {
         "description": "Location of resources upon which this template is dependent, such as nested templates and DSC modules"
       },
-      "defaultValue": "https://raw.githubusercontent.com/AZm1n/AO/master/"
+      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/sql-server-2014-alwayson-dsc"
     }
 
   },
