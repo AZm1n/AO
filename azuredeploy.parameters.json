@@ -12,7 +12,7 @@
   },
 
   "sqlVMSize": {
-    "value": "Standard_D1"
+    "value": "Standard_D2"
   },
 
   "sqlWitnessVMSize": {
