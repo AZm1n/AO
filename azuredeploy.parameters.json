@@ -1,0 +1,72 @@
+{
+  "newStorageAccountNamePrefix": {
+    "value": "karim"
+  },
+
+  "storageAccountType": {
+    "value": "Standard_LRS"
+  },
+
+  "vmNamePrefix": {
+    "value": "KarimVM"
+  },
+
+  "sqlVMSize": {
+    "value": "Standard_D1"
+  },
+
+  "sqlWitnessVMSize": {
+    "value": "Standard_D1"
+  },
+
+  "existingDomainName": {
+    "value": "redmond.corp.microsoft.com.com"
+  },
+
+  "existingAdPDCVMName": {
+    "value": "TK5-RED-DC-14"
+  },
+
+  "existingPrimaryAdIpAddress": {
+    "value": "10.219.0.230"
+  },
+
+  "existingSecondaryAdIpAddress": {
+    "value": "10.219.0.230"
+  },
+
+  "sqlLBIPAddress": {
+    "value": "10.107.94.48"
+  },
+
+  "existingVirtualNetworkId": {
+    "value": "/subscriptions/e4a74065-cc6c-4f56-b451-f07a3fde61de/resourceGroups/ARMERVNETUSCPOC/providers/Microsoft.Network/virtualNetworks/ARMERVNETUSC"
+  },
+
+  "existingSqlSubnetName": {
+    "value": "Subnet-1"
+  },
+
+  "adminUsername": {
+    "value": "ke967"
+  },
+
+  "adminPassword": {
+    "reference": {
+      "keyVault": {
+        "id": "/subscriptions/e4a74065-cc6c-4f56-b451-f07a3fde61de/resourceGroups/Karim/providers/Microsoft.KeyVault/vaults/ProvVault"
+      },
+      "secretName": "LocalAdminPass"
+    }
+  },
+
+  "sqlServerServiceAccountUserName": {
+    "value": "sqlservice"
+  },
+
+  "sqlServerServiceAccountPassword": {
+    "value": "migom@nia999"
+  }
+}
+
+
