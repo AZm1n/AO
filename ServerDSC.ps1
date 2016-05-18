@@ -3,44 +3,37 @@
     param
     (
         [Parameter(Mandatory)]
-        [String[]]$Disks = $null,
+        [String[]]$Disks,
         [Int]$RetryCount=3,
         [Int]$RetryIntervalSec=30
     )
 
       Import-DscResource -ModuleName xComputerManagement,CDisk,XDisk,xNetworking
   
-
+    
     Node localhost
     {
-    
-         xWaitforDisk Disk2
+            $i = 2
+
+    foreach($Disk in $Disks)
+    {
+
+         xWaitforDisk Disk
         {
-             DiskNumber = 2
+             DiskNumber = $i
              RetryIntervalSec =$RetryIntervalSec
              RetryCount = $RetryCount
         }
 
-        cDiskNoRestart DataDisk
+        cDiskNoRestart Disk
         {
-            DiskNumber = 2
-            DriveLetter = "F"
+            DiskNumber = $i
+            DriveLetter = "$Disk"
         }
+        $i++
+   }
 
-        xWaitforDisk Disk3
-        {
-             DiskNumber = 3
-             RetryIntervalSec =$RetryIntervalSec
-             RetryCount = $RetryCount
-        }
-
-        cDiskNoRestart LogDisk
-        {
-            DiskNumber = 3
-            DriveLetter = "G"
-        }
-   
-    }
+ }
 
     
 }
