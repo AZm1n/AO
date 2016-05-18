@@ -1,5 +1,14 @@
 ﻿Configuration PostDeploymentConfig
 {
+
+    param
+    (
+        [Parameter(Mandatory)]
+        [String[]]$Disks,
+        [Int]$RetryCount=3,
+        [Int]$RetryIntervalSec=30
+    )
+
     Node localhost
     {
         LocalConfigurationManager
