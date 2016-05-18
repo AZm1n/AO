@@ -11,7 +11,9 @@ Configuration PostDeploymentConfig
     )
 
     Import-DSCResource -ModuleName xStorage
-
+    
+    $MyDisk = $Disks
+    
     Node localhost
     {
         LocalConfigurationManager
@@ -26,7 +28,7 @@ Configuration PostDeploymentConfig
             SetScript = 
             { 
 
-            foreach($Disk in $Disks)
+            foreach($Disk in $MyDisks)
             {
 
                 xWaitforDisk Disk
