@@ -1,4 +1,4 @@
-ï»¿Configuration PostDeploymentConfig
+Configuration PostDeploymentConfig
 {
 
     param
@@ -6,8 +6,11 @@
         [Parameter(Mandatory)]
         [String[]]$Disks,
         [Int]$RetryCount=3,
-        [Int]$RetryIntervalSec=30
+        [Int]$RetryIntervalSec=30,
+        [Int]$Counts=2
     )
+
+    Import-DSCResource -ModuleName xStorage
 
     Node localhost
     {
@@ -23,24 +26,31 @@
             SetScript = 
             { 
 
+            foreach($Disk in $Disks)
+            {
 
-                $disks = Get-Disk | Where partitionstyle -eq 'raw' | sort number
- 
-                 ## start at F: because sometimes E: shows up as a CD drive in Azure 
-                $letters = 70..89 | ForEach-Object { ([char]$_) }
-                $count = 0
- 
-                foreach($d in $disks) {
-                    $driveLetter = $letters[$count].ToString()
-                    $d | 
-                    Initialize-Disk -PartitionStyle MBR -PassThru |
-                    New-Partition -UseMaximumSize -DriveLetter $driveLetter |
-                    Format-Volume -FileSystem NTFS `
-                        -Confirm:$false -Force 
-                    $count++
-                                    }
+                xWaitforDisk Disk
 
-                
+                {
+
+                DiskNumber = $i
+                RetryIntervalSec = $RetryIntervalSec
+                Count = $RetryCount
+
+                }
+
+                xDisk FVolume
+
+                {
+
+                DiskNumber = $i
+                DriveLetter = $Disk
+                FSLabel = ‘Data’
+
+                }
+                $Counts++
+            }
+
             }
             TestScript = { $false }
             GetScript = { @{ Result = "" } }
