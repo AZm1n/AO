@@ -10,7 +10,7 @@ Configuration PostDeploymentConfig
         [Int]$Counts=2
     )
 
-    Import-DSCResource -ModuleName xStorage
+    Import-DscResource -ModuleName xComputerManagement,CDisk,XDisk,xNetworkin
    
        
     Node localhost
@@ -39,14 +39,13 @@ Configuration PostDeploymentConfig
 
                 }
 
-                xDisk FVolume
+                cDiskNoRestart Disk
 
                 {
 
                 DiskNumber = $Counts
                 DriveLetter = $_
-                FSLabel = ‘Data’
-
+                
                 }
                 $Counts++
             })
