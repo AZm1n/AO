@@ -12,7 +12,7 @@ Configuration PostDeploymentConfig
 
     Import-DSCResource -ModuleName xStorage
     
-    $MyDisk = $Disks
+    $MyDisks = $Disks
     
     Node localhost
     {
