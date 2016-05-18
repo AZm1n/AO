@@ -11,9 +11,8 @@ Configuration PostDeploymentConfig
     )
 
     Import-DSCResource -ModuleName xStorage
-    
-    $MyDisks = $Disks
-    
+   
+       
     Node localhost
     {
         LocalConfigurationManager
@@ -28,14 +27,13 @@ Configuration PostDeploymentConfig
             SetScript = 
             { 
 
-            foreach($Disk in $MyDisks)
-            {
+                $Disks.ForEach({
 
                 xWaitforDisk Disk
 
                 {
 
-                DiskNumber = $i
+                DiskNumber = $Counts
                 RetryIntervalSec = $RetryIntervalSec
                 Count = $RetryCount
 
@@ -45,13 +43,13 @@ Configuration PostDeploymentConfig
 
                 {
 
-                DiskNumber = $i
-                DriveLetter = $Disk
+                DiskNumber = $Counts
+                DriveLetter = $_
                 FSLabel = ‘Data’
 
                 }
                 $Counts++
-            }
+            })
 
             }
             TestScript = { $false }
