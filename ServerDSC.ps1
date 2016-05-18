@@ -8,32 +8,37 @@
         [Int]$RetryIntervalSec=30
     )
 
-      Import-DscResource -ModuleName xComputerManagement,CDisk,xActiveDirectory,XDisk,xSql, xSQLServer, xSQLps,xNetworking
+      Import-DscResource -ModuleName xComputerManagement,CDisk,XDisk,xNetworking
   
 
     Node localhost
     {
     
-    xWaitforDisk Disk2 {
-         DiskNumber = 2
-         RetryIntervalSec =$RetryIntervalSec
-         RetryCount = $RetryCount
-    }
-    cDiskNoRestart ADDataDisk {
-        DiskNumber = 2
-        DriveLetter = "F"
-    }
+         xWaitforDisk Disk2
+        {
+             DiskNumber = 2
+             RetryIntervalSec =$RetryIntervalSec
+             RetryCount = $RetryCount
+        }
 
-    
-    xWaitforDisk Disk3 {
-         DiskNumber = 3
-         RetryIntervalSec =$RetryIntervalSec
-         RetryCount = $RetryCount
-    }
-    cDiskNoRestart ADDataDisk {
-        DiskNumber = 3
-        DriveLetter = "G"
-    }
+        cDiskNoRestart DataDisk
+        {
+            DiskNumber = 2
+            DriveLetter = "F"
+        }
+
+        xWaitforDisk Disk3
+        {
+             DiskNumber = 3
+             RetryIntervalSec =$RetryIntervalSec
+             RetryCount = $RetryCount
+        }
+
+        cDiskNoRestart LogDisk
+        {
+            DiskNumber = 3
+            DriveLetter = "G"
+        }
    
     }
 
