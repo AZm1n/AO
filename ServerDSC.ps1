@@ -1,17 +1,41 @@
-﻿$labels = @("data1,data2")
+﻿configuration ServerDsc
+{
+    param
+    (
+        [Parameter(Mandatory)]
+        [String[]]$Disks = $null,
+        [Int]$RetryCount=3,
+        [Int]$RetryIntervalSec=30
+    )
 
-    $disks = Get-Disk |   Where partitionstyle -eq 'raw' | sort number
- 
-    ## start at F: because sometimes E: shows up as a CD drive in Azure 
-    $letters = 70..89 | ForEach-Object { ([char]$_) }
-    $count = 0
- 
-    foreach($d in $disks) {
-        $driveLetter = $letters[$count].ToString()
-        $d | 
-        Initialize-Disk -PartitionStyle MBR -PassThru |
-        New-Partition -UseMaximumSize -DriveLetter $driveLetter |
-        Format-Volume -FileSystem NTFS -NewFileSystemLabel $labels[$count] `
-            -Confirm:$false -Force 
-        $count++
+      Import-DscResource -ModuleName xComputerManagement,CDisk,xActiveDirectory,XDisk,xSql, xSQLServer, xSQLps,xNetworking
+  
+
+    Node localhost
+    {
+    
+    xWaitforDisk Disk2 {
+         DiskNumber = 2
+         RetryIntervalSec =$RetryIntervalSec
+         RetryCount = $RetryCount
     }
+    cDiskNoRestart ADDataDisk {
+        DiskNumber = 2
+        DriveLetter = "F"
+    }
+
+    
+    xWaitforDisk Disk3 {
+         DiskNumber = 3
+         RetryIntervalSec =$RetryIntervalSec
+         RetryCount = $RetryCount
+    }
+    cDiskNoRestart ADDataDisk {
+        DiskNumber = 3
+        DriveLetter = "G"
+    }
+   
+    }
+
+    
+}
