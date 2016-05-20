@@ -6,7 +6,9 @@
 
 
 $disks = Get-Disk | Where partitionstyle -eq 'raw' | sort number
-## start at F: because sometimes E: shows up as a CD drive in Azure 
+## start at F: because sometimes E: shows up as a CD drive in Azure
+
+$Letters.Split("{,}")
 
 $count = 2
 foreach($l in $Letters) {
