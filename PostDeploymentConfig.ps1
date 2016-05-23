@@ -40,4 +40,4 @@ $driveLetter = $Letters[$count].ToString()
  #                   Format-Volume -FileSystem NTFS `
   #                      -Confirm:$false -Force 
    #                 $count++
-                                    }
+                                    #}
