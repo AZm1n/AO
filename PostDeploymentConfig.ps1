@@ -1,6 +1,7 @@
 ﻿    param
     (
-        [String]$Letters
+        [String]$Letters,
+        [String]$AdminGroup
     )
 
 [string[]]$Letters = $Letters.Replace("'","").Split(",") #converting the single string into an array of strings
@@ -15,7 +16,11 @@ $driveLetter = $Letters[$count].ToString()
    $disk.Index
    "select disk "+$disk.Index+"`r clean`r create partition primary`r format fs=ntfs unit=65536 quick`r active`r assign letter=$driveLetter" | diskpart
 	$count++
-} 
+}
+
+#Add group to local administrators group.
+net localgroup Administrators /add $AdminGroup
+
 
 
  #  param
