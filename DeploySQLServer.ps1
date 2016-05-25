@@ -1,7 +1,7 @@
-﻿
-Configuration DeploySQLServer
+﻿Configuration DeploySQLServer
 {
   param (  
+  
    [string] $DataPath="H:\MSSqlServer\MSSQL\DATA",
    [string] $LogPath="O:\MSSqlServer\MSSQL\DATA",
    [string] $BackupPath="E:\MSSqlServer\MSSQL\DATA",
@@ -67,7 +67,7 @@ Configuration DeploySQLServer
                     }
                   
                     ## wait here til the tempdb drive is online.
-                    $sw = New-Object System.IO.StreamWriter(�C:\Temp\sqlinstall.log�)
+                    $sw = New-Object System.IO.StreamWriter("C:\Temp\sqlinstall.log")
                     $sw.WriteLine("$(Get-Date -Format g) Starting.") 
                    
                         $ready=$false
