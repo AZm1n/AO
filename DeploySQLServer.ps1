@@ -4,7 +4,7 @@
   
    [string] $DataPath="H:\MSSqlServer\MSSQL\DATA",
    [string] $LogPath="O:\MSSqlServer\MSSQL\DATA",
-   [string] $BackupPath="E:\MSSqlServer\MSSQL\DATA",
+   [string] $BackupPath="W:\MSSqlServer\MSSQL\DATA",
    [string] $TempDBPath="T:\MSSqlServer\MSSQL\DATA"
   )
 
@@ -36,7 +36,7 @@
       
         File SQLBackupPath {
             Type = 'Directory'
-            DestinationPath = "E:\MSSqlServer\MSSQL\DATA"
+            DestinationPath = "W:\MSSqlServer\MSSQL\DATA"
             Ensure = "Present"
         }
           
