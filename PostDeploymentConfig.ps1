@@ -1,6 +1,6 @@
 ﻿    param
     (
-        [String]$Letters,
+        [String]$Letters
         #[String]$AdminGroup
     )
 
