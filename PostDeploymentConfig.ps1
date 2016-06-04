@@ -1,7 +1,7 @@
 ﻿    param
     (
-        [String]$Letters
-        #[String]$AdminGroup
+        [String]$Letters,
+        [String]$AdminGroup
     )
 
 [string[]]$Letters = $Letters.Replace("'","").Split(",") #converting the single string into an array of strings
@@ -19,7 +19,7 @@ $driveLetter = $Letters[$count].ToString()
 }
 
 #Add group to local administrators group.
-#net localgroup Administrators /add $AdminGroup
+net localgroup Administrators /add $AdminGroup
 
 
 
