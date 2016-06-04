@@ -21,17 +21,13 @@ configuration PrepareAlwaysOnSqlServer
 
         [Int]$RetryCount=20,
         [Int]$RetryIntervalSec=30
-
+   
     )
 
     Import-DscResource -Module xSQLServer
     Import-DscResource -Module cSQLConfig
 
-    [string]$SourcePath = "\\10.220.224.39\dsl\Gold\Microsoft\SQL\SQL2014SP1\SQLBITS\SQL\SP1"
-    #[string]$NetPath = "\\ohhv003\SQLBuilds\SQLAutoInstall\SQL2012"
-    $Features = @('SQLENGINE','IS','SSMS','ADV_SSMS')
-
-    [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainNetbiosName}\$($Admincreds.UserName)", $Admincreds.Password)
+ [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainNetbiosName}\$($Admincreds.UserName)", $Admincreds.Password)
     [System.Management.Automation.PSCredential]$DomainFQDNCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
     [System.Management.Automation.PSCredential]$SQLCreds = New-Object System.Management.Automation.PSCredential ("${DomainNetbiosName}\$($SQLServicecreds.UserName)", $SQLServicecreds.Password)
 
@@ -56,10 +52,10 @@ configuration PrepareAlwaysOnSqlServer
            xSqlServerSetup $env:COMPUTERNAME
            {
                DependsOn = '[WindowsFeature]NET'
-               SourcePath = $SourcePath
+               SourcePath = "\\10.220.224.39\dsl\Gold\Microsoft\SQL\SQL2014SP1\SQLBITS\SQL\SP1"
                SetupCredential = $DomainCreds
                InstanceName = $env:COMPUTERNAME
-               Features = $Features
+               Features = "SQLENGINE,IS,SSMS,ADV_SSMS"
                SQLSysAdminAccounts = $SQLServicecreds.UserName
                InstallSharedDir = "C:\Program Files\Microsoft SQL Server"
                InstallSharedWOWDir = "C:\Program Files (x86)\Microsoft SQL Server"
@@ -71,14 +67,7 @@ configuration PrepareAlwaysOnSqlServer
                SQLTempDBLogDir = "T:\MSSQL11.MSSQLSERVER\MSSQL\Data"
                SQLBackupDir = "F:\MSSQL11.MSSQLSERVER\MSSQL\Data"
            }
-         
-           xSqlServerFirewall $env:COMPUTERNAME
-           {
-               DependsOn = ("[xSqlServerSetup]" + $env:COMPUTERNAME)
-               SourcePath = $Node.SourcePath
-               InstanceName = $Node.InstanceName
-               Features = $Node.Features
-           }
+
            cPowerPlan ($env:COMPUTERNAME)
            {
                PlanName = "High performance"
