@@ -35,17 +35,12 @@ configuration PrepareAlwaysOnSqlServer
     Node localhost
     {
 
-        
-        WindowsFeature ADPS
-        {
-            Name = "RSAT-AD-PowerShell"
-            Ensure = "Present"
-        }
 
                 WindowsFeature "NET"
         {
             Ensure = "Present"
             Name = "NET-Framework-Core"
+            Source = "\\TK5-CU-ADMIN02\img\sources\sxs"
 
         }
 
