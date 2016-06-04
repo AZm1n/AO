@@ -131,7 +131,6 @@ configuration PrepareAlwaysOnSqlServer
             MaxDegreeOfParallelism = 1
             FilePath = "H:\MSSQL\Data"
             LogPath = "O:\MSSQL\Data"
-            BackupPath = "F:\MSSQL\Bak"
             DomainAdministratorCredential = $DomainFQDNCreds
             DependsOn = "[xSqlLogin]AddSqlServerServiceAccountToSysadminServerRole"
         }
