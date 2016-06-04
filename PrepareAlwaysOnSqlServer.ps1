@@ -47,7 +47,7 @@ configuration PrepareAlwaysOnSqlServer
            xSqlServerSetup $env:COMPUTERNAME
            {
                DependsOn = '[WindowsFeature]NET'
-               SourcePath = "\\10.220.224.39\dsl\Gold\Microsoft\SQL\SQL2014SP1\SQLBITS\SQL\SP1"
+               SourcePath = "\\TK5-CU-ADMIN02\img"
                SetupCredential = $DomainCreds
                InstanceName = $env:COMPUTERNAME
                Features = "SQLENGINE,IS,SSMS,ADV_SSMS"
