@@ -20,3 +20,17 @@ $driveLetter = $Letters[$count].ToString()
 
 #Add group to local administrators group.
 net localgroup Administrators /add $AdminGroup
+
+#Create SQL Directories
+
+md H:\MSSQL\DATA
+md O:\MSSQL\DATA
+md E:\MSSQL\BAK
+
+#Map Net Drive
+net use z: \\10.220.224.39\DSL\Gold\Microsoft\SQL
+z:
+
+#Switch to IPAK directory
+cd SQL2014SP1
+SQLIPAK.Exe /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;REDMOND\KE967; /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY
