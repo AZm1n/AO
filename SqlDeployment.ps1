@@ -4,6 +4,10 @@
         [String]$AdminGroup
     )
 
+
+#Unmount CD/DVD drive d:
+mounvol E: /D
+
 [string[]]$Letters = $Letters.Replace("'","").Split(",") #converting the single string into an array of strings
 
 $count = 0
@@ -25,7 +29,7 @@ net localgroup Administrators /add $AdminGroup
 
 md H:\MSSQL\DATA
 md O:\MSSQL\DATA
-md F:\MSSQL\BAK
+md E:\MSSQL\BAK
 
 
 #Install SQL Framework Core
@@ -37,4 +41,4 @@ z:
 
 #Switch to IPAK directory
 cd SQL2014SP1
-./SQLIPAK.Exe /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:F: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;REDMOND\$AdminGroup;REDMOND\KE967; /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY /preview
+./SQLIPAK.Exe /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;$AdminGroup;REDMOND\KE967; /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY /preview
