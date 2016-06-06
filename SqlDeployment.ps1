@@ -27,10 +27,14 @@ md H:\MSSQL\DATA
 md O:\MSSQL\DATA
 md F:\MSSQL\BAK
 
+
+#Install SQL Framework Core
+Install-WindowsFeature Net-Framework-Core -source \\TK5-CU-ADMIN02\img\sources\sxs
+
 #Map Net Drive
 net use z: \\10.220.224.39\DSL\Gold\Microsoft\SQL
 z:
 
 #Switch to IPAK directory
 cd SQL2014SP1
-./SQLIPAK.Exe /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:F: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;REDMOND\KE967; /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY /preview
+./SQLIPAK.Exe /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:F: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;REDMOND\$AdminGroup;REDMOND\KE967; /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY /preview
