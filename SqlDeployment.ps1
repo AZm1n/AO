@@ -6,7 +6,7 @@
 
 
 #Unmount CD/DVD drive d:
-mounvol E: /D
+mountvol E: /D
 
 [string[]]$Letters = $Letters.Replace("'","").Split(",") #converting the single string into an array of strings
 
