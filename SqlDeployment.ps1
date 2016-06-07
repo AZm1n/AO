@@ -36,7 +36,7 @@ md E:\MSSQL\BAK
 Install-WindowsFeature Net-Framework-Core -source \\TK5-CU-ADMIN02\img\sources\sxs
 
 #Construct the commandline argument
-$CMD = "/SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;"+$AdminGroup+";REDMOND\KE967 /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY /preview"
+$CMD = "/SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;"+$AdminGroup+";REDMOND\KE967 /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY"
 #Map Net Drive
 net use z: \\10.220.224.39\DSL\Gold\Microsoft\SQL
 z:
