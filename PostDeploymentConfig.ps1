@@ -4,6 +4,9 @@
         [String]$AdminGroup
     )
 
+#Unmount CD/DVD drive d:
+mountvol E: /D
+
 [string[]]$Letters = $Letters.Replace("'","").Split(",") #converting the single string into an array of strings
 
 $count = 0
@@ -17,6 +20,10 @@ $driveLetter = $Letters[$count].ToString()
    "select disk "+$disk.Index+"`r clean`r create partition primary`r format fs=ntfs unit=65536 quick`r active`r assign letter=$driveLetter" | diskpart
 	$count++
 }
+
+#Set the Time zone
+TZUTIL /s "Pacific Standard Time"
+
 
 #Add group to local administrators group.
 net localgroup Administrators /add $AdminGroup

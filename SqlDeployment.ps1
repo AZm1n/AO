@@ -45,7 +45,7 @@ net use z: \\10.220.224.39\DSL\Gold\Microsoft\SQL
 
 #Construct the commandline argument
 $sqlcmd = "z:\SQL2014SP1\sqlipak.exe"
-&$sqlcmd /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin "/SQLADMIN:REDMOND\PSITADM;$AdminGroup;REDMOND\KE967" /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY
+&$sqlcmd /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:D: /QFE:12.0.4422 /RemoveBuiltin "/SQLADMIN:REDMOND\PSITADM;$AdminGroup;REDMOND\KE967" /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY
 #Switch to IPAK directory
 #cd SQL2014SP1
 
