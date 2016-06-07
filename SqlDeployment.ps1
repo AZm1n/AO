@@ -22,6 +22,9 @@ $driveLetter = $Letters[$count].ToString()
 	$count++
 }
 
+#Set the time zone
+TZUTIL /s "Pacific Standard Time"
+
 #Add group to local administrators group.
 net localgroup Administrators /add $AdminGroup
 
