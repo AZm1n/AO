@@ -1,7 +1,11 @@
 ﻿    param
     (
         [String]$Letters,
-        [String]$AdminGroup
+        [String]$AdminGroup,
+        [string]$SxsSource,
+        [string]$IpakServer,
+        [string]$IpakCommand
+        
     )
 
 
@@ -36,10 +40,10 @@ md E:\MSSQL\BAK
 
 
 #Install SQL Framework Core
-Install-WindowsFeature Net-Framework-Core -source \\TK5-CU-ADMIN02\img\sources\sxs
+Install-WindowsFeature Net-Framework-Core -source $Win
 
 
-$CMD = "/SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;"+$AdminGroup+";REDMOND\KE967 /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY"
+$CMD = "/SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:D: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;"+$AdminGroup+";REDMOND\KE967 /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY"
 #Map Net Drive
 net use z: \\10.220.224.39\DSL\Gold\Microsoft\SQL
 
