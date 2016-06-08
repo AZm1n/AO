@@ -4,7 +4,7 @@
         [String]$AdminGroup,
         [string]$SxsSource,
         [string]$IpakServer,
-        [string]$IpakCommand
+        [string]$SqlAdmins
         
     )
 
@@ -40,16 +40,16 @@ md E:\MSSQL\BAK
 
 
 #Install SQL Framework Core
-Install-WindowsFeature Net-Framework-Core -source $Win
+Install-WindowsFeature Net-Framework-Core -source $SxsSource
 
 
 $CMD = "/SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:D: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;"+$AdminGroup+";REDMOND\KE967 /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY"
 #Map Net Drive
-net use z: \\10.220.224.39\DSL\Gold\Microsoft\SQL
+net use z: $IpakServer
 
 #Construct the commandline argument
 $sqlcmd = "z:\SQL2014SP1\sqlipak.exe"
-&$sqlcmd /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:D: /QFE:12.0.4422 /RemoveBuiltin "/SQLADMIN:REDMOND\PSITADM;$AdminGroup;REDMOND\KE967" /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY
+&$sqlcmd /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:D: /QFE:12.0.4422 /RemoveBuiltin "$SqlAdmins" /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY
 #Switch to IPAK directory
 #cd SQL2014SP1
 
