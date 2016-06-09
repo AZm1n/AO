@@ -50,8 +50,9 @@ net use z: $IpakServer
 #Construct the commandline argument
 $sqlcmd = "z:\SQL2014SP1\sqlipak.exe"
 &$sqlcmd /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:D: /QFE:12.0.4422 /RemoveBuiltin "$SqlAdmins" /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY
-#Switch to IPAK directory
-#cd SQL2014SP1
 
-#$CMD | ./SQLIPAK.Exe
-#./SQLIPAK.Exe /SQL /BIN:C: /DAT:H: /TRAN:O: /BAK:E: /TEMP:T: /QFE:12.0.4422 /RemoveBuiltin /SQLADMIN:REDMOND\PSITADM;$AdminGroup;REDMOND\KE967; /AUTOTEMPFILES /CLEANMSDB /NOLOGCOPY /preview
+#Add SQL startup Script
+md C:\SQLStartup
+Copy-Item -Path $IpakServer\SQL-Startup.ps1 -Destination C:\SQLStartup
+&C:\SQLStartup\SQL-Startup.ps1
+
