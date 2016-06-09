@@ -53,6 +53,6 @@ $sqlcmd = "z:\SQL2014SP1\sqlipak.exe"
 
 #Add SQL startup Script
 md C:\SQLStartup
-Copy-Item -Path $IpakServer\SQL-Startup.ps1 -Destination C:\SQLStartup
+Copy-Item -Path $SxsSource\SQL-Startup.ps1 -Destination C:\SQLStartup
 &C:\SQLStartup\SQL-Startup.ps1
 
