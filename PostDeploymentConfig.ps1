@@ -26,8 +26,12 @@ TZUTIL /s "Pacific Standard Time"
 
 
 #Add group to local administrators group.
-net localgroup Administrators /add $AdminGroup
+[string[]]$Admins = $AdminGroup.Replace("'","").Split(";")
 
+foreach ($Admin in $Admins)
+{
+net localgroup Administrators /add $Admin
+}
 
 
  #  param
