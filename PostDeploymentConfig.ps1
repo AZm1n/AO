@@ -3,12 +3,16 @@
       [Parameter(
     HelpMessage = "Drive Letter Array",
     Mandatory = $True,
-    [string]$Letters,
+    ValueFromPipeline = $True,
+    ValueFromPipelineByPropertyName = $True)]
+  [string]$Letters,
 
   [Parameter(
     HelpMessage = "Admin Group",
     Mandatory = $False,
-   [string]$AdminGroup
+    ValueFromPipeline = $True,
+    ValueFromPipelineByPropertyName = $True)]
+  	[string]$AdminGroup
     )
 
 #Unmount CD/DVD drive d:
