@@ -1,7 +1,14 @@
 ﻿    param
     (
-        [String]$Letters,
-        [String]$AdminGroup
+      [Parameter(
+    HelpMessage = "Drive Letter Array",
+    Mandatory = $True,
+    [string]$Letters,
+
+  [Parameter(
+    HelpMessage = "Admin Group",
+    Mandatory = $False,
+   [string]$AdminGroup
     )
 
 #Unmount CD/DVD drive d:
